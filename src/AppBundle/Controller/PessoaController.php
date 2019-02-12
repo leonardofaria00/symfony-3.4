@@ -32,6 +32,7 @@ class PessoaController extends Controller {
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+//        return $this->render('pessoa/index.html.twig', ['nome'=>'Leonardo Faria dos Santos']);
     }
 
     /**
