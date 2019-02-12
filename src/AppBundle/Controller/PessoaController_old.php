@@ -13,7 +13,7 @@ class PessoaController_old extends Controller {
      * @Route("/", name="homepagea")
      */
     public function indexAction(Request $request) {
-        return new JsonResponse(['msg' => 'Serie Symfony 3.4 API']);
+        return new JsonResponse(['msg' => 'PessoaController_old']);
     }
 
     /**
