@@ -16,7 +16,7 @@ class PessoaController extends Controller {
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request) {
-        return new JsonResponse(['msg' => 'Serie Symfony 3.4 API Pessoa Controller']);
+        return new JsonResponse(['msg' => 'PessoaController']);
     }
 
     /**
@@ -24,6 +24,10 @@ class PessoaController extends Controller {
      */
     public function index() {
         $pessoa = $this->getDoctrine()->getRepository('AppBundle:Pessoa')->findAll();
+        
+        $pessoa = $this->get('jms_serializer')->serialize($pessoa, 'json');
+        
+        $response = new Response($pessoa);
         return new JsonResponse($pessoa);
     }
 
