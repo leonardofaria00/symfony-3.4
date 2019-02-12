@@ -22,7 +22,7 @@ class PessoaController extends Controller {
     }
 
     /**
-     * @Route("/lista", name="api_pessoa")
+     * @Route("/lista", name="api_pessoa_lista")
      */
     public function index() {
         $pessoa = $this->getDoctrine()->getRepository('AppBundle:Pessoa')->findAll();
@@ -32,7 +32,7 @@ class PessoaController extends Controller {
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
-//        return $this->render('pessoa/index.html.twig', ['nome'=>'Leonardo Faria dos Santos']);
+        //return $this->render('pessoa/index.html.twig', ['nome'=>'Leonardo Faria dos Santos']);
     }
 
     /**
