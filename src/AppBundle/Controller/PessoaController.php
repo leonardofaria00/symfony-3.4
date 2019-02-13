@@ -25,27 +25,16 @@ class PessoaController extends Controller {
      * @Route("/lista", name="api_pessoa_listaAction")
      */
     public function listaAction() {
-        $pessoa = $this->getDoctrine()->getRepository('AppBundle:Pessoa')->findAll();
-        $pessoa = $this->get('jms_serializer')->serialize($pessoa, 'json');
-
-        $response = new Response($pessoa);
-//        $response->headers->set('Content-Type', 'application/json');
-//        return $response;
-        return $this->render('pessoa/index.html.twig', ['pessoas' => $response]);
-//        return $this->renderView('pessoa/index.html.twig', ['pessoas' => $response]);
-//        return $this->renderJson('pessoa/index.html.twig', ['pessoas' => $response]);
+        $pessoas = $this->getDoctrine()->getRepository('AppBundle:Pessoa')->findAll();
+        return $this->render('pessoa/index.html.twig', ['pessoa' => $pessoas]);
     }
 
     /**
      * @Route("/lista/{id}", name="api_pessoa_showAction")
      */
-    public function showAction(Pessoa $pessoa) {
-        $pessoa = $this->get('jms_serializer')->serialize($pessoa, 'json');
-
-        $response = new Response($pessoa, 200);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+    public function showAction(Pessoa $id) {
+        $pessoa = $this->getDoctrine()->getRepository('AppBundle:Pessoa')->find($id);
+        return $this->render('pessoa/index.html.twig', ['pessoa' => $pessoa]);
     }
 
     /**
