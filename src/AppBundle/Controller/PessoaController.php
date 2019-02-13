@@ -33,7 +33,7 @@ class PessoaController extends Controller {
      * @Route("/lista/{id}", name="api_pessoa_showAction")
      */
     public function showAction(Pessoa $id) {
-        $pessoa = $this->getDoctrine()->getRepository('AppBundle:Pessoa')->find($id);
+        $pessoa = $this->getDoctrine()->getRepository('AppBundle:Pessoa')->findBy($id);
         return $this->render('pessoa/index.html.twig', ['pessoa' => $pessoa]);
     }
 
@@ -42,6 +42,13 @@ class PessoaController extends Controller {
      */
     public function addAction() {
         return $this->render('pessoa/adiciona.html.twig');
+    }
+
+    /**
+     * @Route("/add/salva", name="api_pessoa_salvaAction")
+     */
+    public function salvaAction() {
+        echo 'Salvando Pessoa...';
     }
 
 }

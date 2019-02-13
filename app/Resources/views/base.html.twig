@@ -8,11 +8,20 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
 
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <title>{% block title %}Projeto Symfony 3.4!{% endblock %}</title>
     </head>
     <body>
         <div class="container">
         {% block body %}{% endblock %}
+        <div class="fixed-bottom">
+            <div class="float-right">
+                {% block footer %}
+                    &copy; Copyright 2019 by <a href="https://github.com/leonardofaria00/symfony-3.4" target="_blank">Leonardo F Santos</a>.
+                {% endblock %}
+            </div>
+        </div>
     </div>
 
 

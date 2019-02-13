@@ -3,13 +3,14 @@
 {% block body %}
     <h1>Members</h1>
 
-    <table class="table">
+    <table class="table table-sm table-hover">
         <thead>
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Login</th>
                 <th scope="col">Senha</th>
+                <th scope="col">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -19,13 +20,21 @@
                     <td>{{p.nome}}</td>
                     <td>{{p.login}}</td>
                     <td>{{p.senha}}</td>
+                    <td>
+                        <a class="btn" href="#" title="Detalhes"> 
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <a class="btn" href="#" title="Alterar"> 
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <a class="btn" href="#" title="Excluir"> 
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+    <a type="button" class="btn btn-sm btn-primary" href="/pessoa/add">Cadastrar</a>
 
-    <form method="GET" action="/pessoa/add">
-        <br>
-        <button type="button" class="btn btn-primary">Cadastrar</button>
-    </form>
 {% endblock %}
