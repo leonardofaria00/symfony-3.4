@@ -17,8 +17,8 @@ class PessoaController extends Controller {
     /**
      * @Route("/", name="api_pessoa_indexAction")
      */
-    public function indexAction(Request $request) {
-        return new JsonResponse(['msg' => 'PessoaController']);
+    public function indexAction() {
+        return $this->render('pessoa/index.html.twig');
     }
 
     /**
@@ -26,15 +26,15 @@ class PessoaController extends Controller {
      */
     public function listaAction() {
         $pessoas = $this->getDoctrine()->getRepository('AppBundle:Pessoa')->findAll();
-        return $this->render('pessoa/index.html.twig', ['pessoa' => $pessoas]);
+        return $this->render('pessoa/view.html.twig', ['pessoa' => $pessoas]);
     }
 
     /**
      * @Route("/lista/{id}", name="api_pessoa_showAction")
      */
     public function showAction(Pessoa $id) {
-        $pessoa = $this->getDoctrine()->getRepository('AppBundle:Pessoa')->findBy($id);
-        return $this->render('pessoa/index.html.twig', ['pessoa' => $pessoa]);
+//        $pessoa = $this->getDoctrine()->getRepository('AppBundle:Pessoa')->findBy($id);
+//        return $this->render('pessoa/index.html.twig', ['pessoa' => $pessoa]);
     }
 
     /**

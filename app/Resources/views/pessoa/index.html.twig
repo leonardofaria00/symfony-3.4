@@ -1,40 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Members</h1>
+    <div class="text-center">
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 
-    <table class="table table-sm table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Login</th>
-                <th scope="col">Senha</th>
-                <th scope="col">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for p in pessoa %}
-                <tr>
-                    <th scope="row">{{p.id}}</th>
-                    <td>{{p.nome}}</td>
-                    <td>{{p.login}}</td>
-                    <td>{{p.senha}}</td>
-                    <td>
-                        <a class="btn" href="#" title="Detalhes"> 
-                            <i class="fas fa-search"></i>
-                        </a>
-                        <a class="btn" href="#" title="Alterar"> 
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                        <a class="btn" href="#" title="Excluir"> 
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a type="button" class="btn btn-sm btn-primary" href="/pessoa/add">Cadastrar</a>
 
+            <main role="main" class="inner cover">
+                <h1 class="cover-heading">Bem Vindo ao Dashboard do Projeto.</h1>
+                <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p class="lead">
+                    <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
+                </p>
+            </main>
+
+
+        </div>
+    </div>
 {% endblock %}
+
