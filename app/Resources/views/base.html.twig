@@ -14,22 +14,21 @@
     </head>
     <body>
         <div class="container">
-            {% block menu %}
-                <div class="text-center">
-                    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-                        <header class="masthead mb-auto">
-                            <div class="inner">
-                                <h3 class="masthead-brand">Symfony 3.4</h3>
-                                <nav class="nav nav-masthead justify-content-center">
-                                    <a class="nav-link active" href="/pessoa">Home</a>
-                                    <a class="nav-link" href="/pessoa/lista">Consulta</a>
-                                    <a class="nav-link" href="https://github.com/leonardofaria00/symfony-3.4.git">Git</a>
-                                </nav>
-                            </div>
-                        </header>
-                    </div>
+            <div class="text-center">
+                <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+                    <header class="masthead mb-auto">
+                        <div class="inner">
+                            <h3 class="masthead-brand">Symfony 3.4</h3>
+                            <nav class="nav nav-masthead justify-content-center">
+                                <a class="nav-link active" href="/pessoa">Home</a>
+                                <a class="nav-link" href="/pessoa/lista">Consulta</a>
+                                <a class="nav-link" href="https://github.com/leonardofaria00/symfony-3.4.git">Git</a>
+                            </nav>
+                        </div>
+                    </header>
                 </div>
-            {% endblock %}
+            </div>
+
         {% block body %}{% endblock %}
 
         <footer class="fixed-bottom">
