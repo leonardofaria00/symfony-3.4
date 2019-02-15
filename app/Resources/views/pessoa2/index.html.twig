@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pessoas list</h1>
+
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Login</th>
+                <th scope="col">Senha</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pessoa2 in pessoa2s %}
+                <tr>
+                    <td><a href="{{ path('pessoa2_show', { 'id': pessoa2.id }) }}">{{ pessoa2.id }}</a></td>
+                    <td>{{ pessoa2.nome }}</td>
+                    <td>{{ pessoa2.login }}</td>
+                    <td>{{ pessoa2.senha }}</td>
+                    <td>
+                        <a href="{{ path('pessoa2_show', { 'id': pessoa2.id }) }}" title="Detalhes">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <a href="{{ path('pessoa2_edit', { 'id': pessoa2.id }) }}" title="Alterar">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <a href="{{ path('pessoa2_delete', { 'id': pessoa2.id }) }}" title="Excluir">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-sm btn-primary" href="{{ path('pessoa2_new') }}">Cadastrar</a>
+    <a class="btn btn-sm btn-secondary" href="{{ path('pessoa2_index') }}">Voltar</a>
+    {# <ul>
+         <li>
+             <a href="{{ path('pessoa2_new') }}">Create a new pessoa2</a>
+         </li>
+     </ul>#}
+{% endblock %}
