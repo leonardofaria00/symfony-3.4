@@ -45,6 +45,13 @@ class PessoaController extends Controller {
     }
 
     /**
+     * @Route("/sobre", name="api_pessoa_sobre")
+     */
+    public function sobreAction() {
+        return $this->render('pessoa/sobre.html.twig');
+    }
+
+    /**
      * @Route("/add/salva", name="api_pessoa_salvaAction")
      */
     public function salvaAction() {
