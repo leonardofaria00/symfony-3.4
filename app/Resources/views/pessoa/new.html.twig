@@ -1,16 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Pessoa creation</h1>
+    <h1>Pessoa Cadastrar</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    {{ form_widget(form) }}
+    <div class="row">
+        <input type="submit" class="btn btn-sm btn-success" value="Salvar" required/>
+        {{ form_end(form) }}
+        <a class="btn btn-sm btn-secondary" href="{{ path('_view') }}">Voltar</a>
+        <button type="reset" class="btn btn-sm btn-warning">Limpar</button>
+    </div>
 {% endblock %}

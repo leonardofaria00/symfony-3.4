@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Pessoas list</h1>
+    <h1>Pessoas Lista</h1>
 
     <table class="table table-sm table-hover">
         <thead>
@@ -16,18 +16,18 @@
         <tbody>
             {% for p in pessoas %}
                 <tr>
-                    <td><a href="{{ path('p_show', { 'id': p.id }) }}">{{ p.id }}</a></td>
+                    <td><a href="{{ path('_show', { 'id': p.id }) }}">{{ p.id }}</a></td>
                     <td>{{ p.nome }}</td>
                     <td>{{ p.login }}</td>
                     <td>{{ p.senha }}</td>
                     <td>
-                        <a href="{{ path('p_show', { 'id': p.id }) }}" title="Detalhes">
+                        <a href="{{ path('_show', { 'id': p.id }) }}" title="Detalhes">
                             <i class="fas fa-search"></i>
                         </a>
-                        <a href="{{ path('p_edit', { 'id': p.id }) }}" title="Alterar">
+                        <a href="{{ path('_edit', { 'id': p.id }) }}" title="Alterar">
                             <i class="fas fa-pencil-alt text-success"></i>
                         </a>
-                        <a href="{{ path('p_delete', { 'id': p.id }) }}" title="Excluir">
+                        <a href="{{ path('_delete', { 'id': p.id }) }}" title="Excluir">
                             <i class="fas fa-trash-alt text-danger"></i>
                         </a>
                     </td>

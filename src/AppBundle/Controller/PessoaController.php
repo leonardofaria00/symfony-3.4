@@ -16,13 +16,19 @@ use Symfony\Component\HttpFoundation\Request;
 class PessoaController extends Controller {
 
     /**
-     * Lists all pessoa entities.
-     *
      * @Route("/", name="_index")
      * @Method("GET")
      */
     public function indexAction() {
         return $this->render('pessoa/index.html.twig');
+    }
+
+    /**
+     * @Route("/sobre", name="_sobre")
+     * @Method("GET")
+     */
+    public function sobreAction() {
+        return $this->render('pessoa/sobre.html.twig');
     }
 
     /**

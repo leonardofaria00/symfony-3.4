@@ -1,44 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Pessoa</h1>
+    <h1>Pessoa Detalhes</h1>
 
-    <table>
+    <table class="table-hover">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th scope="row">Id:</th>
                 <td>{{ pessoa.id }}</td>
             </tr>
             <tr>
-                <th>Nome</th>
+                <th scope="row">Nome:</th>
                 <td>{{ pessoa.nome }}</td>
             </tr>
             <tr>
-                <th>Identidade</th>
+                <th scope="row">Identidade:</th>
                 <td>{{ pessoa.identidade }}</td>
             </tr>
             <tr>
-                <th>Login</th>
+                <th scope="row">Login:</th>
                 <td>{{ pessoa.login }}</td>
             </tr>
             <tr>
-                <th>Senha</th>
+                <th scope="row">Senha:</th>
                 <td>{{ pessoa.senha }}</td>
             </tr>
         </tbody>
     </table>
+    <div class="row">
+        <a class="btn btn-sm btn-success" href="{{ path('_edit', { 'id': pessoa.id }) }}">Editar</a>
+        <a class="btn btn-sm btn-secondary" href="{{ path('_view') }}">Voltar</a>
 
-    <ul>
-        <li>
-            <a href="{{ path('_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('_edit', { 'id': pessoa.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        {{ form_start(delete_form) }}
+        <input class="btn btn-sm btn-danger" type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+
+    </div>
 {% endblock %}
