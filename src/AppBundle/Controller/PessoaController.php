@@ -32,6 +32,20 @@ class PessoaController extends Controller {
     }
 
     /**
+     * Gera relatório de pessoas cadastradas.
+     *
+     * @Route("/gerar", name="_gerar")
+     * @Method("GET")
+     */
+    public function gerarRelatorioAction() {
+        $em = $this->getDoctrine()->getManager();
+
+        $pessoas = $em->getRepository('AppBundle:Pessoa')->findAll();
+
+        return $this->render('pessoa/pdfTemplate.html.twig', array('pessoas' => $pessoas,));
+    }
+
+    /**
      * Lists all pessoa entities.
      *
      * @Route("/view", name="_view")
