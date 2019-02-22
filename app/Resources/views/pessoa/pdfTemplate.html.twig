@@ -3,6 +3,7 @@
 {% block body %}
     <center><h1>Lista de Relatório de Pessoas</h1></center>
 
+    <a class="btn btn-sm btn-primary" href="{{ path('_pdf') }}">Gerar relatório</a>
     <table class="table table-sm table-hover">
         <thead>
             <tr>
@@ -25,6 +26,5 @@
             {% endfor %}
         </tbody>
     </table>
-    <a class="btn btn-sm btn-primary" href="{{ path('_pdf') }}">Gerar</a>
 
 {% endblock %}
