@@ -2,11 +2,14 @@
 
 namespace AppBundle\Controller;
 
+require_once '../vendor/autoload.php';
+
 use AppBundle\Entity\Pessoa;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Pessoa controller.
@@ -37,12 +40,28 @@ class PessoaController extends Controller {
      * @Route("/gerar", name="_gerar")
      * @Method("GET")
      */
-    public function gerarRelatorioAction() {
+    public function viewRelatorioAction() {
         $em = $this->getDoctrine()->getManager();
 
         $pessoas = $em->getRepository('AppBundle:Pessoa')->findAll();
 
         return $this->render('pessoa/pdfTemplate.html.twig', array('pessoas' => $pessoas,));
+    }
+
+    /**
+     * Exporta os dados da grid de TipoAssunto para um PDF
+     *
+     * @Route("/pdf", name="_pdf")
+     */
+    public function exportPdfAction() {
+        $html = '';
+//        $html .= $this->exportCapaPdfAction($idSumex, $renderHtml = true, true);
+        $html .= '<style type="text/css">.page {page-break-after: always;}</style><div class="page"></div>';
+//        $html .= '<br/>' . $this->exportDadoPaisPdf($idSumex);
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml(
+             $html, ['margin-left' => '18', 'margin-top' => '25', 'margin-bottom' => '21', 'margin-right' => '10']), 200, 
+            ['Content-Type' => 'application/pdf', 'Content-Disposition' => 'attachment; filename="relatorio.pdf"',]);
     }
 
     /**
@@ -84,7 +103,7 @@ class PessoaController extends Controller {
     /**
      * Finds and displays a pessoa entity.
      *
-     * @Route("/{id}", name="_show")
+     * @Route("/view/{id}", name="_show")
      * @Method("GET")
      */
     public function showAction(Pessoa $pessoa) {

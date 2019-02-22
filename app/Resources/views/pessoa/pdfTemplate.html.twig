@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Lista de Relatório de Pessoas</h1>
+    <center><h1>Lista de Relatório de Pessoas</h1></center>
 
     <table class="table table-sm table-hover">
         <thead>
@@ -11,9 +11,20 @@
                 <th scope="col">Identidade</th>
                 <th scope="col">Login</th>
                 <th scope="col">Senha</th>
-                <th scope="col">Ações</th>
             </tr>
         </thead>
-{#        <tbody></tbody>#}
+        <tbody>
+            {% for p in pessoas %}
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.nome }}</td>
+                    <td>{{ p.identidade }}</td>
+                    <td>{{ p.login }}</td>
+                    <td>{{ p.senha }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
+    <a class="btn btn-sm btn-primary" href="{{ path('_pdf') }}">Gerar</a>
+
 {% endblock %}
