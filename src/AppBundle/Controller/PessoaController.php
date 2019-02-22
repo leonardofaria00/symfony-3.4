@@ -54,14 +54,10 @@ class PessoaController extends Controller {
      * @Route("/pdf", name="_pdf")
      */
     public function exportPdfAction() {
-        $html = '';
-//        $html .= $this->exportCapaPdfAction($idSumex, $renderHtml = true, true);
-        $html .= '<style type="text/css">.page {page-break-after: always;}</style><div class="page"></div>';
-//        $html .= '<br/>' . $this->exportDadoPaisPdf($idSumex);
+        $html = 'http://symfony.local/pessoa/gerar';
         return new Response(
-            $this->get('knp_snappy.pdf')->getOutputFromHtml(
-             $html, ['margin-left' => '18', 'margin-top' => '25', 'margin-bottom' => '21', 'margin-right' => '10']), 200, 
-            ['Content-Type' => 'application/pdf', 'Content-Disposition' => 'attachment; filename="relatorio.pdf"',]);
+                $this->get('knp_snappy.pdf')->getOutputFromHtml($html), 'file.pdf'
+        );
     }
 
     /**
