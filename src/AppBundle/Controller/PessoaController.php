@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-require_once '../vendor/autoload.php';
+//require_once __DIR__ . '/vendor/autoload.php';
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -57,8 +57,14 @@ class PessoaController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $pessoas = $em->getRepository('AppBundle:Pessoa')->findAll();
+//    return $this->render('pessoa/templates/geraRelatorioPDF.html.twig', array('pessoas' => $pessoas,));
+//    public function renderPdf($data, $cab = null, $cols = null, $template = 'BizlayBundle::exportpdf.html.twig', $option = [], $name = 'file') {
 
-        return $this->render('pessoa/templates/geraRelatorioPDF.html.twig', array('pessoas' => $pessoas,));
+        return $this->renderPdf($pessoas, $html = 'pessoa/templates/geraRelatorioPDF.html.twig', ['margin-left' => '18',
+                    'margin-top' => '25',
+                    'margin-bottom' => '21',
+                    'margin-right' => '10'
+                        ], 'relatorio');
     }
 
     /**
@@ -157,6 +163,23 @@ class PessoaController extends Controller {
      */
     private function createDeleteForm(Pessoa $pessoa) {
         return $this->createFormBuilder()->setAction($this->generateUrl('_delete', array('id' => $pessoa->getId())))->setMethod('DELETE')->getForm();
+    }
+
+    /**
+     * Renderiza um array em formato PDF.
+     * @param  [type] $arr [description]
+     * @return [type]      [description]
+     */
+    public function renderPdf($data, $html, $option = [], $name = 'file') {
+//    public function renderPdf($data, $cab = null, $cols = null, $template = 'BizlayBundle::exportpdf.html.twig', $option = [], $name = 'file') {
+
+        $this->get('knp_snappy.pdf')->getOutputFromHtml($html, $option);
+        return new Response(
+                $this->get('knp_snappy.pdf')->getOutputFromHtml($html, $option), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="' . $name . '.pdf"',
+                ]
+        );
     }
 
 }

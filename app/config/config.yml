@@ -31,6 +31,18 @@ framework:
     php_errors:
         log: true
 
+#knp_snappy Configuration
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     /usr/bin/wkhtmltox/bin/wkhtmltopdf 
+
+        options:    []
+    image:
+        enabled:    true
+        binary:     /usr/bin/wkhtmltox/bin/wkhtmltoimage
+        options:    []
+
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'
@@ -64,4 +76,4 @@ swiftmailer:
     host: '%mailer_host%'
     username: '%mailer_user%'
     password: '%mailer_password%'
-    spool: { type: memory }
+    spool: { type: memory } 
