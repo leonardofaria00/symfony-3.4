@@ -2,9 +2,9 @@
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     /usr/local/bin/wkhtmltopdf 
+        binary:     /usr/bin/wkhtmltox/bin/wkhtmltopdf 
         options:    []
     image:
         enabled:    true
-        binary:     /usr/local/bin/wkhtmltoimage
+        binary:     /usr/bin/wkhtmltox/bin/wkhtmltoimage
         options:    []
