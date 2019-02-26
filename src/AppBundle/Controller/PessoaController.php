@@ -4,12 +4,12 @@ namespace AppBundle\Controller;
 
 require_once '../vendor/autoload.php';
 
-use AppBundle\Entity\Pessoa;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Pessoa;
 
 /**
  * Pessoa controller.
@@ -54,10 +54,11 @@ class PessoaController extends Controller {
      * @Route("/pdf", name="_pdf")
      */
     public function exportPdfAction() {
-        $html = 'http://symfony.local/pessoa/gerar';
-        return new Response(
-                $this->get('knp_snappy.pdf')->getOutputFromHtml($html), 'file.pdf'
-        );
+        $em = $this->getDoctrine()->getManager();
+
+        $pessoas = $em->getRepository('AppBundle:Pessoa')->findAll();
+
+        return $this->render('pessoa/templates/geraRelatorioPDF.html.twig', array('pessoas' => $pessoas,));
     }
 
     /**
