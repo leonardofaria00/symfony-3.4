@@ -55,12 +55,11 @@ class PessoaController extends Controller {
      */
     public function exportPdfAction() {
         $em = $this->getDoctrine()->getManager();
-
         $pessoas = $em->getRepository('AppBundle:Pessoa')->findAll();
-//    return $this->render('pessoa/templates/geraRelatorioPDF.html.twig', array('pessoas' => $pessoas,));
-//    public function renderPdf($data, $cab = null, $cols = null, $template = 'BizlayBundle::exportpdf.html.twig', $option = [], $name = 'file') {
 
-        return $this->renderPdf($pessoas, $html = 'pessoa/templates/geraRelatorioPDF.html.twig', ['margin-left' => '18',
+//    return $this->render('pessoa/templates/geraRelatorioPDF.html.twig', array('pessoas' => $pessoas,));
+        $html = "<center><h1>Relatorio de Pessoas</h1></center>";
+        return $this->renderPdf($pessoas, $html, ['margin-left' => '18',
                     'margin-top' => '25',
                     'margin-bottom' => '21',
                     'margin-right' => '10'
