@@ -10,7 +10,35 @@
 
         <title>Hello, world!</title>
     </head>
-    <body>
+    <body class="container">
     <center><h1>Relatório de Pessoas</h1></center>
-</body>
-</html>
+
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Identidade</th>
+                <th scope="col">Login</th>
+                <th scope="col">Senha</th>
+            </tr>
+        </thead>
+        {% if pessoas %}
+            <tbody>
+                {% for p in pessoas %}
+                    <tr>
+                        <td>{{ p.id }}</td>
+                        <td>{{ p.nome }}</td>
+                        <td>{{ p.identidade }}</td>
+                        <td>{{ p.login }}</td>
+                        <td>{{ p.senha }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% else %}
+            <tr>
+                <td>Não há registro cadastrado.</td>
+
+            </tr>
+        {% endif %}
+    </table>

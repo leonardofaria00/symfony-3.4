@@ -45,7 +45,7 @@ class PessoaController extends Controller {
 
         $pessoas = $em->getRepository('AppBundle:Pessoa')->findAll();
 
-        return $this->render('pessoa/pdfTemplate.html.twig', array('pessoas' => $pessoas,));
+        return $this->render('pessoa/pdfTemplate.html.twig', ['pessoas' => $pessoas]);
     }
 
     /**
@@ -56,14 +56,28 @@ class PessoaController extends Controller {
     public function exportPdfAction() {
         $em = $this->getDoctrine()->getManager();
         $pessoas = $em->getRepository('AppBundle:Pessoa')->findAll();
+        $html = $this->render('pessoa/templates/geraRelatorioPDF.html.twig', ['pessoas' => $pessoas]);
+        echo $html;
+        exit;
+//      return $this->render('pessoa/templates/geraRelatorioPDF.html.twig', ['pessoas' => $pessoas]);
+        return $this->renderPdf($html, 'relatorio');
+    }
 
-//    return $this->render('pessoa/templates/geraRelatorioPDF.html.twig', array('pessoas' => $pessoas,));
-        $html = "<center><h1>Relatorio de Pessoas</h1></center>";
-        return $this->renderPdf($pessoas, $html, ['margin-left' => '18',
-                    'margin-top' => '25',
-                    'margin-bottom' => '21',
-                    'margin-right' => '10'
-                        ], 'relatorio');
+    /**
+     * Renderiza um array em formato PDF.
+     * @param  [type] $arr [description]
+     * @return [type]      [description]
+     */
+    public function renderPdf($html = [], $name = 'file') {
+//    public function renderPdf($data, $cab = null, $cols = null, $template = 'BizlayBundle::exportpdf.html.twig', $option = [], $name = 'file') {
+
+        $this->get('knp_snappy.pdf')->getOutputFromHtml($html);
+        return new Response(
+                $this->get('knp_snappy.pdf')->getOutputFromHtml($html), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="' . $name . '.pdf"',
+                ]
+        );
     }
 
     /**
@@ -77,7 +91,7 @@ class PessoaController extends Controller {
 
         $pessoas = $em->getRepository('AppBundle:Pessoa')->findAll();
 
-        return $this->render('pessoa/view.html.twig', array('pessoas' => $pessoas,));
+        return $this->render('pessoa/view.html.twig', ['pessoas' => $pessoas]);
     }
 
     /**
@@ -162,23 +176,6 @@ class PessoaController extends Controller {
      */
     private function createDeleteForm(Pessoa $pessoa) {
         return $this->createFormBuilder()->setAction($this->generateUrl('_delete', array('id' => $pessoa->getId())))->setMethod('DELETE')->getForm();
-    }
-
-    /**
-     * Renderiza um array em formato PDF.
-     * @param  [type] $arr [description]
-     * @return [type]      [description]
-     */
-    public function renderPdf($data, $html, $option = [], $name = 'file') {
-//    public function renderPdf($data, $cab = null, $cols = null, $template = 'BizlayBundle::exportpdf.html.twig', $option = [], $name = 'file') {
-
-        $this->get('knp_snappy.pdf')->getOutputFromHtml($html, $option);
-        return new Response(
-                $this->get('knp_snappy.pdf')->getOutputFromHtml($html, $option), 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'attachment; filename="' . $name . '.pdf"',
-                ]
-        );
     }
 
 }
